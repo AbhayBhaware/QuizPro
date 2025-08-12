@@ -36,6 +36,7 @@ dependencies {
 
     implementation (platform("com.google.firebase:firebase-bom:32.7.3"))
 
+
 // Firebase libraries (no version needed)
     implementation ("com.google.firebase:firebase-database")
     implementation ("com.google.firebase:firebase-firestore")
@@ -50,4 +51,6 @@ dependencies {
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+
+    implementation("com.intuit.sdp:sdp-android:1.1.1")
 }
