@@ -8,13 +8,36 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="@dimen/_100sdp"
+        app:cardElevation="@dimen/_10sdp">
+
+        <TextView
+            android:id="@+id/timertext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:text="30s"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="@dimen/_15sdp" />
+
+
+    </androidx.cardview.widget.CardView>
+
     <androidx.cardview.widget.CardView
         android:layout_width="@dimen/_280sdp"
         android:layout_height="@dimen/_75sdp"
         app:cardCornerRadius="10dp"
         android:backgroundTint="@color/white"
         app:cardElevation="10dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center">
 
         <LinearLayout
