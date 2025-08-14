@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+
+    <ImageView
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:src="@drawable/quizlogo"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_30sdp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:backgroundTint="@color/white"
+        app:cardElevation="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_20sdp">
+
+        <EditText
+            android:id="@+id/usernameEDT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Username"
+            android:fontFamily="sans-serif-condensed"
+            android:drawableLeft="@drawable/usericon"
+            android:drawablePadding="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:background="#00000000"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:backgroundTint="@color/white"
+        app:cardElevation="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_30sdp">
+
+        <EditText
+            android:id="@+id/passwordEDT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Password"
+            android:fontFamily="sans-serif-condensed"
+            android:drawableLeft="@drawable/passicon"
+            android:drawablePadding="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:background="#00000000"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:text="LOGIN"
+        android:id="@+id/loginBTN"
+        android:fontFamily="sans-serif-condensed"
+        android:textSize="@dimen/_15sdp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_40sdp"
+        app:rippleColor="@color/white"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password?"
+        android:textSize="@dimen/_12sdp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif-condensed"
+        android:id="@+id/forgetpassText"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:text="Create new accont"
+        android:textSize="@dimen/_15sdp"
+        android:id="@+id/createAcBTN"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_40sdp"
+        app:rippleColor="@color/white"/>
+
+</LinearLayout>
