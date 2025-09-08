@@ -8,12 +8,18 @@
     android:layout_height="match_parent"
     tools:context=".SingupActivity">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:src="@drawable/quizlogo"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_20sdp"/>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_50sdp"
         android:layout_marginRight="@dimen/_15sdp"
         android:layout_marginLeft="@dimen/_15sdp"
         android:backgroundTint="@color/white">
@@ -21,6 +27,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/name"
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_5sdp"
             android:hint="Enter Name"
@@ -44,6 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_5sdp"
+            android:id="@+id/number"
             android:layout_marginRight="@dimen/_5sdp"
             android:hint="Enter Number"
             android:drawableLeft="@drawable/passicon"
@@ -68,6 +76,7 @@
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_5sdp"
             android:hint="Enter Email"
+            android:id="@+id/email"
             android:drawableLeft="@drawable/emailicon"
             android:drawablePadding="@dimen/_5sdp"
             android:background="#00000000"/>
@@ -90,6 +99,7 @@
             android:layout_marginLeft="@dimen/_5sdp"
             android:layout_marginRight="@dimen/_5sdp"
             android:hint="Enter Password"
+            android:id="@+id/password"
             android:drawableLeft="@drawable/passicon"
             android:drawablePadding="@dimen/_5sdp"
             android:background="#00000000"/>
@@ -101,6 +111,7 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_40sdp"
         android:text="SIGN UP"
+        android:id="@+id/signupBTN"
         app:rippleColor="@color/white"
         android:textSize="@dimen/_15sdp"
         android:layout_gravity="center"/>
