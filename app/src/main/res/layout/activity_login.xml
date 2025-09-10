@@ -27,10 +27,10 @@
         android:layout_marginTop="@dimen/_20sdp">
 
         <EditText
-            android:id="@+id/usernameEDT"
+            android:id="@+id/numberEDT"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Username"
+            android:hint="Number"
             android:fontFamily="sans-serif-condensed"
             android:drawableLeft="@drawable/usericon"
             android:drawablePadding="@dimen/_5sdp"
