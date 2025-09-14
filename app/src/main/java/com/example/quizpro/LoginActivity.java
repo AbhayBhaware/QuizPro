@@ -60,6 +60,9 @@ public class LoginActivity extends AppCompatActivity {
                             if (dbpassword.equals(password))
                             {
                                 Toast.makeText(LoginActivity.this, "Login Succesfully", Toast.LENGTH_SHORT).show();
+
+                                getSharedPreferences("QuizProPrefs",MODE_PRIVATE).edit().putBoolean("isLoggedIn",true).putString("userNumber",number).apply();
+
                                 Intent i=new Intent(LoginActivity.this,HomeActivity.class);
                                 startActivity(i);
                                 finish();

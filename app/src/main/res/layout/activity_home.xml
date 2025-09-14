@@ -86,5 +86,11 @@
 
     </LinearLayout>
 
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:text="Logout"
+        android:textSize="@dimen/_20sdp"
+        android:id="@+id/logoutBTN"/>
 </LinearLayout>
 
