@@ -15,7 +15,7 @@
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="@dimen/_133sdp"
+            android:layout_width="@dimen/_134sdp"
             android:layout_height="@dimen/_160sdp"
             android:id="@+id/card1"
             app:cardElevation="@dimen/_10sdp"
@@ -33,15 +33,25 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/_120sdp"
                     android:src="@drawable/programmingquiz"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Programming Quiz"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="@dimen/_133sdp"
+            android:layout_width="@dimen/_134sdp"
             android:layout_height="@dimen/_160sdp"
             android:backgroundTint="@color/white"
             app:cardElevation="@dimen/_10sdp"
@@ -59,8 +69,18 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/historyquiz"/>
+                android:layout_height="@dimen/_120sdp"
+                android:src="@drawable/historyquiz1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="History Quiz"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/black"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
 
@@ -74,7 +94,7 @@
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
-            android:layout_width="@dimen/_133sdp"
+            android:layout_width="@dimen/_134sdp"
             android:layout_height="@dimen/_160sdp"
             app:cardElevation="@dimen/_10sdp"
             android:backgroundTint="@color/white"
@@ -92,15 +112,25 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/sportsquiz"/>
+                android:layout_height="@dimen/_120sdp"
+                android:src="@drawable/sportsquiz1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sports Quiz"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-condensed"
+                    android:layout_gravity="center"/>
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:layout_width="@dimen/_133sdp"
+            android:layout_width="@dimen/_134sdp"
             android:layout_height="@dimen/_160sdp"
             app:cardElevation="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_6sdp"
@@ -118,8 +148,18 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/sciencequiz"/>
+                android:layout_height="@dimen/_120sdp"
+                android:src="@drawable/sciencequiz1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Science &amp; Tech Quiz"
+                    android:textSize="@dimen/_14sdp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif-condensed"
+                    android:layout_gravity="center" />
 
             </LinearLayout>
 
