@@ -113,12 +113,12 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_120sdp"
-                android:src="@drawable/sportsquiz1"/>
+                android:src="@drawable/sciencequiz1"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sports Quiz"
+                    android:text="Science &amp; Tech Quiz"
                     android:textSize="@dimen/_14sdp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -149,12 +149,12 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_120sdp"
-                android:src="@drawable/sciencequiz1"/>
+                android:src="@drawable/sportsquiz1"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Science &amp; Tech Quiz"
+                    android:text="Sports Quiz"
                     android:textSize="@dimen/_14sdp"
                     android:textColor="@color/black"
                     android:textStyle="bold"

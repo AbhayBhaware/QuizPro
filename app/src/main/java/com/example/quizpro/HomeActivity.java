@@ -45,11 +45,41 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(HomeActivity.this, MainActivity.class);
+                i.putExtra("category", "Programming");
                 startActivity(i);
-                finish();
+
             }
         });
 
+        card2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(HomeActivity.this, MainActivity.class);
+                i.putExtra("category", "History");
+                startActivity(i);
+
+            }
+        });
+
+        card3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(HomeActivity.this, MainActivity.class);
+                i.putExtra("category", "ScienceandTech");
+                startActivity(i);
+
+            }
+        });
+
+        card4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(HomeActivity.this, MainActivity.class);
+                i.putExtra("category", "Sports");
+                startActivity(i);
+
+            }
+        });
 
     }
 }

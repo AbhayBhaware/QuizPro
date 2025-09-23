@@ -47,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
         opD = findViewById(R.id.optionD);
         nextBtn = findViewById(R.id.nextBtn);
 
-        dbRef= FirebaseDatabase.getInstance().getReference("Programming");
+        String category=getIntent().getStringExtra("category");
+
+        dbRef= FirebaseDatabase.getInstance().getReference(category);
 
         fetchQuestion();
     }
