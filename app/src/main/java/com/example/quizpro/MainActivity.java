@@ -6,9 +6,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -23,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     CountDownTimer countDownTimer;
     int timePerQuestion = 30;
 
-    FirebaseFirestore db;
-    List<DocumentSnapshot> questionList = new ArrayList<>();
+    DatabaseReference dbRef;
+    List<Question> questionList = new ArrayList<>();
     int currentIndex = 0;
 
     @Override
@@ -40,37 +47,45 @@ public class MainActivity extends AppCompatActivity {
         opD = findViewById(R.id.optionD);
         nextBtn = findViewById(R.id.nextBtn);
 
-        db = FirebaseFirestore.getInstance();
+        dbRef= FirebaseDatabase.getInstance().getReference("Programming");
 
         fetchQuestion();
     }
 
     public void fetchQuestion() {
-        db.collection("Questions").get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                questionList = task.getResult().getDocuments();
-                if (!questionList.isEmpty()) {
+        dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                questionList.clear();
+                for (DataSnapshot data: snapshot.getChildren()){
+                    Question question=data.getValue(Question.class);
+                    if (question!=null)
+                    {
+                        questionList.add(question);
+                    }
+                }
+                if (!questionList.isEmpty())
+                {
                     showQuestion(currentIndex);
                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Failed To Load Question", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
 
     public void showQuestion(int index) {
-        DocumentSnapshot document = questionList.get(index);
+        Question question=questionList.get(index);
 
-        String question = document.getString("question");
-        String optionA = document.getString("optionA");
-        String optionB = document.getString("optionB");
-        String optionC = document.getString("optionC");
-        String optionD = document.getString("optionD");
-        String correctAnswer = document.getString("currectAnswer");
-
-        questionText.setText(question);
-        opA.setText(optionA);
-        opB.setText(optionB);
-        opC.setText(optionC);
-        opD.setText(optionD);
+        questionText.setText(question.getQuestion());
+        opA.setText(question.getOptions().get(0));
+        opB.setText(question.getOptions().get(1));
+        opC.setText(question.getOptions().get(2));
+        opD.setText(question.getOptions().get(3));
 
         // Reset colors and selections
         opA.setTextColor(getResources().getColor(android.R.color.black));
@@ -83,11 +98,11 @@ public class MainActivity extends AppCompatActivity {
         opD.setChecked(false);
 
         // Start timer for this question
-        startTimer(correctAnswer);
+        startTimer(question.getAnswer());
 
         nextBtn.setOnClickListener(v -> {
             countDownTimer.cancel(); // Stop timer when answer is chosen
-            checkAnswer(correctAnswer);
+            checkAnswer(question.getAnswer());
         });
     }
 
@@ -113,10 +128,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkAnswer(String correctAnswer) {
         String selectedAnswer = "";
-        if (opA.isChecked()) selectedAnswer = "optionA";
-        else if (opB.isChecked()) selectedAnswer = "optionB";
-        else if (opC.isChecked()) selectedAnswer = "optionC";
-        else if (opD.isChecked()) selectedAnswer = "optionD";
+        if (opA.isChecked()) selectedAnswer = opA.getText().toString();
+        else if (opB.isChecked()) selectedAnswer = opB.getText().toString();
+        else if (opC.isChecked()) selectedAnswer = opC.getText().toString();
+        else if (opD.isChecked()) selectedAnswer = opD.getText().toString();
 
         if (selectedAnswer.equals(correctAnswer)) {
             highlightCorrect(correctAnswer, true);
@@ -146,10 +161,10 @@ public class MainActivity extends AppCompatActivity {
 
         RadioButton correctOption = null;
 
-        if (correctAnswer.equals("optionA")) correctOption = opA;
-        else if (correctAnswer.equals("optionB")) correctOption = opB;
-        else if (correctAnswer.equals("optionC")) correctOption = opC;
-        else if (correctAnswer.equals("optionD")) correctOption = opD;
+        if (opA.getText().toString().equals(correctAnswer)) correctOption = opA;
+        else if (opB.getText().toString().equals(correctAnswer)) correctOption = opB;
+        else if (opC.getText().toString().equals(correctAnswer)) correctOption = opC;
+        else if (opD.getText().toString().equals(correctAnswer)) correctOption = opD;
 
         if (isCorrect && correctOption != null) {
             correctOption.setTextColor(colorGreen);
