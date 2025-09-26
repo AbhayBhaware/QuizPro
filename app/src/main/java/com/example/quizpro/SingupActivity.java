@@ -18,6 +18,7 @@ public class SingupActivity extends AppCompatActivity {
     EditText Ename, Enumber, Eemail, Epassword;
     Button signupBTN;
 
+
     DatabaseReference dbref;
 
     @Override

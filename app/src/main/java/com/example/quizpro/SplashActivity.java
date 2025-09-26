@@ -8,14 +8,22 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 public class SplashActivity extends AppCompatActivity {
 
+    TextView splashText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        splashText=findViewById(R.id.splashText);
+
+        Animation fadein= AnimationUtils.loadAnimation(this, R.anim.fade_in);
+        splashText.startAnimation(fadein);
        Handler h=new Handler();
        h.postDelayed(new Runnable() {
            @Override
