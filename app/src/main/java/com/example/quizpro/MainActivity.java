@@ -20,6 +20,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -68,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (!questionList.isEmpty())
                 {
+                    Collections.shuffle(questionList);
+                    currentIndex=0;
                     showQuestion(currentIndex);
                 }
             }
