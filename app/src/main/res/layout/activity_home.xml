@@ -63,7 +63,7 @@
             android:layout_marginBottom="@dimen/_6sdp"
             android:layout_marginRight="@dimen/_12sdp"
             android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
+            android:foreground="@drawable/card_selector"
             app:cardCornerRadius="@dimen/_16sdp">
 
             <LinearLayout
@@ -108,7 +108,7 @@
             android:layout_marginBottom="@dimen/_12sdp"
             android:layout_marginRight="@dimen/_5sdp"
             android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
+            android:foreground="@drawable/card_selector"
             app:cardCornerRadius="@dimen/_16sdp">
 
             <LinearLayout
@@ -146,7 +146,7 @@
             android:layout_marginBottom="@dimen/_12sdp"
             android:layout_marginRight="@dimen/_12sdp"
             android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
+            android:foreground="@drawable/card_selector"
             app:cardCornerRadius="@dimen/_16sdp">
 
             <LinearLayout

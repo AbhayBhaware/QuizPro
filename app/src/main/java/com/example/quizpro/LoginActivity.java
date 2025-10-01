@@ -3,14 +3,19 @@ package com.example.quizpro;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -19,6 +24,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText numberEDT, passwordEDT;
 
     DatabaseReference dbref;
+    MaterialCardView m1, m2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +37,61 @@ public class LoginActivity extends AppCompatActivity {
         passwordEDT = findViewById(R.id.passwordEDT);
         loginBTN=findViewById(R.id.loginBTN);
 
+        m1=findViewById(R.id.mobileCard);
+        m2=findViewById(R.id.passCard);
+        List<MaterialCardView> allCards=Arrays.asList(m1,m2);
+        List<EditText> allEdits = Arrays.asList(numberEDT, passwordEDT);
+
         dbref= FirebaseDatabase.getInstance().getReference("Users");
 
         String numberFromSignup=getIntent().getStringExtra("number");
-
         if (numberFromSignup !=null)
         {
             numberEDT.setText(numberFromSignup);
         }
+
+
+
+        View.OnClickListener selectCardListener = v->{
+            for (MaterialCardView c:allCards)
+            {
+                c.setStrokeColor(Color.TRANSPARENT);
+            }
+
+            if (v instanceof EditText)
+            {
+                MaterialCardView parent =(MaterialCardView) v.getParent();
+
+                parent.setStrokeColor(Color.parseColor("#60CDC2"));
+            }
+
+            else if (v instanceof MaterialCardView)
+            {
+                ((MaterialCardView) v).setStrokeColor(Color.parseColor("#60CDC2"));
+            }
+        };
+
+        for (MaterialCardView card :allCards)
+        {
+            card.setOnClickListener(selectCardListener);
+        }
+        for (EditText editText:allEdits)
+        {
+            editText.setOnFocusChangeListener((v, hasFocus)->{
+                if (hasFocus)
+                {
+                    for (MaterialCardView c:allCards)
+                    {
+                        c.setStrokeColor(Color.TRANSPARENT);
+                    }
+                    MaterialCardView parent =(MaterialCardView) v.getParent();
+                    parent.setStrokeColor(Color.parseColor("#60CDC2"));
+                }
+            });
+
+            editText.setOnClickListener(selectCardListener);
+        }
+
 
         loginBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(LoginActivity.this, SingupActivity.class);
                 startActivity(intent);
-                finish();
+
             }
         });
     }
