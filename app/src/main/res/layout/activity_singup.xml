@@ -15,14 +15,18 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_20sdp"/>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_15sdp"
         android:layout_marginLeft="@dimen/_15sdp"
-        android:backgroundTint="@color/white">
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        app:strokeWidth="@dimen/_1sdp"
+        app:strokeColor="@android:color/transparent"
+        android:id="@+id/nameCard">
 
         <EditText
             android:layout_width="match_parent"
@@ -37,9 +41,9 @@
             android:drawablePadding="@dimen/_5sdp"
             android:background="#00000000"/>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         app:cardCornerRadius="@dimen/_10sdp"
@@ -47,7 +51,11 @@
         android:layout_marginTop="@dimen/_30sdp"
         android:layout_marginRight="@dimen/_15sdp"
         android:layout_marginLeft="@dimen/_15sdp"
-        android:backgroundTint="@color/white">
+        android:backgroundTint="@color/white"
+        android:id="@+id/mbCard"
+        android:clickable="true"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="@dimen/_1sdp">
 
         <EditText
             android:layout_width="match_parent"
@@ -63,9 +71,9 @@
             android:drawablePadding="@dimen/_5sdp"
             android:background="#00000000"/>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         app:cardCornerRadius="@dimen/_10sdp"
@@ -73,7 +81,11 @@
         android:layout_marginTop="@dimen/_30sdp"
         android:layout_marginRight="@dimen/_15sdp"
         android:layout_marginLeft="@dimen/_15sdp"
-        android:backgroundTint="@color/white">
+        android:backgroundTint="@color/white"
+        android:id="@+id/emailCard"
+        app:strokeWidth="@dimen/_1sdp"
+        app:strokeColor="@android:color/transparent"
+        android:clickable="true">
 
         <EditText
             android:layout_width="match_parent"
@@ -88,9 +100,9 @@
             android:drawablePadding="@dimen/_5sdp"
             android:background="#00000000"/>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         app:cardCornerRadius="@dimen/_10sdp"
@@ -98,7 +110,11 @@
         android:layout_marginTop="@dimen/_30sdp"
         android:layout_marginRight="@dimen/_15sdp"
         android:layout_marginLeft="@dimen/_15sdp"
-        android:backgroundTint="@color/white">
+        android:backgroundTint="@color/white"
+        android:id="@+id/passwordCard"
+        android:clickable="true"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="@dimen/_1sdp">
 
         <EditText
             android:layout_width="match_parent"
@@ -113,7 +129,7 @@
             android:drawablePadding="@dimen/_5sdp"
             android:background="#00000000"/>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="@dimen/_200sdp"
