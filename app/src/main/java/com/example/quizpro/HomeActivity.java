@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
@@ -30,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseFirestore db;
     ImageView truefalseIMG;
 
+    RelativeLayout overlay;
     ProgressBar imageloading;
 
     @Override
@@ -44,6 +46,8 @@ public class HomeActivity extends AppCompatActivity {
         logoutBTN=findViewById(R.id.logoutBTN);
         truefalseIMG=findViewById(R.id.truefalseIMG);
         imageloading=findViewById(R.id.imageLoader);
+        overlay=findViewById(R.id.loadingOverLay);
+
         db=FirebaseFirestore.getInstance();
 
         Map<String, ImageView> imageMap = new HashMap<>();
@@ -53,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         imageMap.put("sRGChD6g0J3wy1oKFYGW", findViewById(R.id.coinsIMG));
 
         imageloading.setVisibility(View.VISIBLE);
+        overlay.setVisibility(View.VISIBLE);
 
         db.collection("Images").get().addOnSuccessListener(queryDocumentSnapshots -> {
             int totalDocs=queryDocumentSnapshots.size();
@@ -86,11 +91,13 @@ public class HomeActivity extends AppCompatActivity {
                 if (loadCount[0]==totalDocs)
                 {
                     imageloading.setVisibility(View.GONE);
+                    overlay.setVisibility(View.GONE);
                 }
 
             }
         }).addOnFailureListener(e -> {
             imageloading.setVisibility(View.GONE);
+            overlay.setVisibility(View.GONE);
             Toast.makeText(this, "Failed to Load Images", Toast.LENGTH_SHORT).show();
         });
 
