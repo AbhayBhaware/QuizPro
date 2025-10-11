@@ -72,6 +72,7 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/menuBTN"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="center"
@@ -389,12 +390,6 @@
 
                     </androidx.cardview.widget.CardView>
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/logoutBTN"
-                        android:layout_width="@dimen/_130sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:text="Logout"
-                        android:textSize="@dimen/_20sdp" />
 
                 </LinearLayout>
 

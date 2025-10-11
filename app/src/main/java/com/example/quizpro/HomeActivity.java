@@ -13,6 +13,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -27,9 +28,8 @@ import java.util.Map;
 public class HomeActivity extends AppCompatActivity {
 
     CardView card1, card2, card3, card4;
-    Button logoutBTN;
     FirebaseFirestore db;
-    ImageView truefalseIMG;
+    ImageView truefalseIMG, menuBTN;
 
     RelativeLayout overlay;
     ProgressBar imageloading;
@@ -43,11 +43,10 @@ public class HomeActivity extends AppCompatActivity {
         card2=findViewById(R.id.card2);
         card3=findViewById(R.id.card3);
         card4=findViewById(R.id.card4);
-        logoutBTN=findViewById(R.id.logoutBTN);
         truefalseIMG=findViewById(R.id.truefalseIMG);
         imageloading=findViewById(R.id.imageLoader);
         overlay=findViewById(R.id.loadingOverLay);
-
+        menuBTN=findViewById(R.id.menuBTN);
         db=FirebaseFirestore.getInstance();
 
         Map<String, ImageView> imageMap = new HashMap<>();
@@ -102,18 +101,45 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        logoutBTN.setOnClickListener(new View.OnClickListener() {
+        menuBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getSharedPreferences("QuizProPrefs",MODE_PRIVATE).edit().clear().apply();
+                PopupMenu popupMenu=new PopupMenu(HomeActivity.this, v);
+                popupMenu.getMenuInflater().inflate(R.menu.main_menu,popupMenu.getMenu());
 
-                Toast.makeText(HomeActivity.this, "Logout Successfully", Toast.LENGTH_SHORT).show();
+                popupMenu.setOnMenuItemClickListener(item -> {
+                    int id=item.getItemId();
+                    if (id==R.id.about)
+                    {
+                        Toast.makeText(HomeActivity.this, "About clicked", Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                    else if(id==R.id.rateus)
+                    {
+                        Toast.makeText(HomeActivity.this, "Rate us Clicked", Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                    else if (id==R.id.share)
+                    {
+                        Toast.makeText(HomeActivity.this, "Share Clicked", Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                    else if (id==R.id.logout);
+                    {
+                        getSharedPreferences("QuizProPrefs",MODE_PRIVATE).edit().clear().apply();
 
-                Intent i=new Intent(HomeActivity.this, LoginActivity.class);
-                startActivity(i);
-                finish();
+                        Toast.makeText(HomeActivity.this, "Logout Successfully", Toast.LENGTH_SHORT).show();
+
+                        Intent i=new Intent(HomeActivity.this, LoginActivity.class);
+                        startActivity(i);
+                        finish();
+                        return true;
+                    }
+                });
+                popupMenu.show();
             }
         });
+
 
         card1.setOnClickListener(new View.OnClickListener() {
             @Override
