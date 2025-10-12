@@ -7,13 +7,17 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -101,43 +105,49 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        menuBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu popupMenu=new PopupMenu(HomeActivity.this, v);
-                popupMenu.getMenuInflater().inflate(R.menu.main_menu,popupMenu.getMenu());
+        menuBTN.setOnClickListener(v -> {
+            View popupView=getLayoutInflater().inflate(R.layout.custom_menu_layout,null);
 
-                popupMenu.setOnMenuItemClickListener(item -> {
-                    int id=item.getItemId();
-                    if (id==R.id.about)
-                    {
-                        Toast.makeText(HomeActivity.this, "About clicked", Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
-                    else if(id==R.id.rateus)
-                    {
-                        Toast.makeText(HomeActivity.this, "Rate us Clicked", Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
-                    else if (id==R.id.share)
-                    {
-                        Toast.makeText(HomeActivity.this, "Share Clicked", Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
-                    else if (id==R.id.logout);
-                    {
-                        getSharedPreferences("QuizProPrefs",MODE_PRIVATE).edit().clear().apply();
+            PopupWindow popupWindow=new PopupWindow(
+                    popupView,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    true
+            );
 
-                        Toast.makeText(HomeActivity.this, "Logout Successfully", Toast.LENGTH_SHORT).show();
+            popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            popupWindow.setElevation(10);
 
-                        Intent i=new Intent(HomeActivity.this, LoginActivity.class);
-                        startActivity(i);
-                        finish();
-                        return true;
-                    }
-                });
-                popupMenu.show();
-            }
+            int xoffset=(int)(getResources().getDisplayMetrics().density * -75);
+            popupWindow.showAsDropDown(menuBTN,xoffset, 0);
+
+            View.OnClickListener menuClickListner = view-> {
+                int id=view.getId();
+
+                if (id==R.id.menu_about)
+                {
+                    Toast.makeText(this, "About Clicked", Toast.LENGTH_SHORT).show();
+                } else if (id==R.id.menu_rate)
+                {
+                    Toast.makeText(this, "Rate us Clicked", Toast.LENGTH_SHORT).show();
+                } else if (id==R.id.menu_share)
+                {
+                    Toast.makeText(this, "Share Clicked", Toast.LENGTH_SHORT).show();
+                } else if (id==R.id.menu_logout)
+                {
+                    getSharedPreferences("QuizProPrefs", MODE_PRIVATE).edit().clear().apply();
+                    Toast.makeText(this, "Logout Successfully", Toast.LENGTH_SHORT).show();
+                    Intent i=new Intent(HomeActivity.this, LoginActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+                popupWindow.dismiss();
+            };
+            popupView.findViewById(R.id.menu_about).setOnClickListener(menuClickListner);
+            popupView.findViewById(R.id.menu_rate).setOnClickListener(menuClickListner);
+            popupView.findViewById(R.id.menu_share).setOnClickListener(menuClickListner);
+            popupView.findViewById(R.id.menu_logout).setOnClickListener(menuClickListner);
+
         });
 
 
