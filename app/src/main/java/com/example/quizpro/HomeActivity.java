@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -34,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
     CardView card1, card2, card3, card4;
     FirebaseFirestore db;
     ImageView truefalseIMG, menuBTN;
-
+    FrameLayout profileFrame;
     RelativeLayout overlay;
     ProgressBar imageloading;
 
@@ -51,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
         imageloading=findViewById(R.id.imageLoader);
         overlay=findViewById(R.id.loadingOverLay);
         menuBTN=findViewById(R.id.menuBTN);
+        profileFrame=findViewById(R.id.profileFrame);
         db=FirebaseFirestore.getInstance();
 
         Map<String, ImageView> imageMap = new HashMap<>();
@@ -104,6 +106,12 @@ public class HomeActivity extends AppCompatActivity {
             Toast.makeText(this, "Failed to Load Images", Toast.LENGTH_SHORT).show();
         });
 
+        profileFrame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showProfileLayout();
+            }
+        });
 
         menuBTN.setOnClickListener(v -> {
             View popupView=getLayoutInflater().inflate(R.layout.custom_menu_layout,null);
@@ -193,5 +201,28 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void showProfileLayout()
+    {
+        View popupView = getLayoutInflater().inflate(R.layout.custom_profile_layout,null);
+
+        PopupWindow popupWindow=new PopupWindow(
+                popupView,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                true
+        );
+
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.setElevation(10);
+
+        int xoffset=(int) (getResources().getDisplayMetrics().density* 6);
+        popupWindow.showAsDropDown(profileFrame, xoffset, 0);
+
+        View.OnClickListener profileClickListner = view -> {
+
+            popupWindow.dismiss();
+        };
     }
 }

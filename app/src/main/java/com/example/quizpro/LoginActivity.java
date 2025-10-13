@@ -118,6 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                                 getSharedPreferences("QuizProPrefs",MODE_PRIVATE).edit().putBoolean("isLoggedIn",true).putString("userNumber",number).apply();
 
                                 Intent i=new Intent(LoginActivity.this,HomeActivity.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
                                 finish();
                             }
