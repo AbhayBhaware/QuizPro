@@ -21,6 +21,7 @@ import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
@@ -38,6 +39,7 @@ public class HomeActivity extends AppCompatActivity {
     FrameLayout profileFrame;
     RelativeLayout overlay;
     ProgressBar imageloading;
+    TextView usernameText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class HomeActivity extends AppCompatActivity {
         card2=findViewById(R.id.card2);
         card3=findViewById(R.id.card3);
         card4=findViewById(R.id.card4);
+        usernameText=findViewById(R.id.usernameText);
         truefalseIMG=findViewById(R.id.truefalseIMG);
         imageloading=findViewById(R.id.imageLoader);
         overlay=findViewById(R.id.loadingOverLay);
@@ -105,6 +108,17 @@ public class HomeActivity extends AppCompatActivity {
             overlay.setVisibility(View.GONE);
             Toast.makeText(this, "Failed to Load Images", Toast.LENGTH_SHORT).show();
         });
+
+
+        String userName=getIntent().getStringExtra("name");
+        if (userName!=null)
+        {
+            usernameText.setText("Hello, "+userName);
+        }
+        else
+        {
+            usernameText.setText("Hello, User");
+        }
 
         profileFrame.setOnClickListener(new View.OnClickListener() {
             @Override

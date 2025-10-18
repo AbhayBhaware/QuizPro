@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         dbref= FirebaseDatabase.getInstance().getReference("Users");
 
         String numberFromSignup=getIntent().getStringExtra("number");
+        String nameFromSignup=getIntent().getStringExtra("name");
         if (numberFromSignup !=null)
         {
             numberEDT.setText(numberFromSignup);
@@ -118,6 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                                 getSharedPreferences("QuizProPrefs",MODE_PRIVATE).edit().putBoolean("isLoggedIn",true).putString("userNumber",number).apply();
 
                                 Intent i=new Intent(LoginActivity.this,HomeActivity.class);
+                                i.putExtra("name", nameFromSignup);
                                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(i);
                                 finish();

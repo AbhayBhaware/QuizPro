@@ -109,6 +109,7 @@ public class SingupActivity extends AppCompatActivity {
                         Toast.makeText(SingupActivity.this, "Signup Successfully", Toast.LENGTH_SHORT).show();
                         Intent i=new Intent(SingupActivity.this, LoginActivity.class);
                         i.putExtra("number", number);
+                        i.putExtra("name", name);
                         startActivity(i);
                         finish();
                     }
