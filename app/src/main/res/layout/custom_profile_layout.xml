@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:layout_gravity="center">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
             android:src="@drawable/quizlogo"
@@ -43,26 +43,27 @@
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avtar1"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/quizlogo"/>
+            />
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avtar2"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/quizlogo"
             android:layout_marginLeft="@dimen/_10sdp"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avtar3"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/quizlogo"
             android:layout_marginLeft="@dimen/_10sdp"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avtar4"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/quizlogo"
             android:layout_marginLeft="@dimen/_10sdp"/>
 
     </LinearLayout>
@@ -74,26 +75,27 @@
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avtar5"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/quizlogo"/>
+            />
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avtar6"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/quizlogo"
             android:layout_marginLeft="@dimen/_10sdp"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avtar7"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/quizlogo"
             android:layout_marginLeft="@dimen/_10sdp"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avtar8"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/quizlogo"
             android:layout_marginLeft="@dimen/_10sdp"/>
 
     </LinearLayout>

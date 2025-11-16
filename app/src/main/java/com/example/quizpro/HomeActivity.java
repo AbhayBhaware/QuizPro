@@ -3,8 +3,10 @@ package com.example.quizpro;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -12,6 +14,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -28,8 +31,11 @@ import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -221,12 +227,33 @@ public class HomeActivity extends AppCompatActivity {
     {
         View popupView = getLayoutInflater().inflate(R.layout.custom_profile_layout,null);
 
-        PopupWindow popupWindow=new PopupWindow(
+        PopupWindow popupWindow = new PopupWindow(
                 popupView,
-                LinearLayout.LayoutParams.WRAP_CONTENT,
+                (int)(Resources.getSystem().getDisplayMetrics().widthPixels * 0.85),
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 true
         );
+
+
+        FirebaseFirestore fb=FirebaseFirestore.getInstance();
+
+        fb.collection("Avatars").get().addOnSuccessListener(queryDocumentSnapshots -> {
+
+            Log.d("AVATAR_FIRESTORE", "Docs count = " + queryDocumentSnapshots.size());
+
+            ArrayList<String> base64List =new ArrayList<>();
+
+            for (DocumentSnapshot doc : queryDocumentSnapshots)
+            {
+                String base64 =doc.getString("image");
+                base64List.add(base64);
+            }
+
+            loadAvatarImages(base64List, popupView);
+
+
+        });
+
 
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         popupWindow.setElevation(10);
@@ -239,4 +266,69 @@ public class HomeActivity extends AppCompatActivity {
             popupWindow.dismiss();
         };
     }
+
+    public void decodeAvatar(String base64Image, ImageView targetView) {
+
+        Log.d("AVATAR_DEBUG", "decodeAvatar() called");
+
+        // if no Base64 image stored -> DO NOTHING
+        if (base64Image == null || base64Image.trim().isEmpty()) {
+            Log.e("AVATAR_DEBUG", "Base64 is NULL or EMPTY");
+            return; // keep the original XML image
+        }
+
+        Log.d("AVATAR_DEBUG", "Original Base64 length: " + base64Image.length());
+
+        try {
+            // Check and remove prefix
+            if (base64Image.startsWith("data:image")) {
+                Log.d("AVATAR_DEBUG", "Data URL detected. Removing prefix...");
+                base64Image = base64Image.substring(base64Image.indexOf(",") + 1);
+            }
+
+            Log.d("AVATAR_DEBUG", "Decoding Base64...");
+
+            byte[] decodeBytes = Base64.decode(base64Image, Base64.DEFAULT);
+
+            Log.d("AVATAR_DEBUG", "Decoded bytes length: " + decodeBytes.length);
+
+            Bitmap bitmap = BitmapFactory.decodeByteArray(decodeBytes, 0, decodeBytes.length);
+
+            if (bitmap != null) {
+                Log.d("AVATAR_DEBUG", "Bitmap decoded successfully! Width="
+                        + bitmap.getWidth() + " Height=" + bitmap.getHeight());
+                targetView.setImageBitmap(bitmap);
+            } else {
+                Log.e("AVATAR_DEBUG", "Bitmap is NULL after decoding!!");
+            }
+
+        } catch (Exception e) {
+            Log.e("AVATAR_DEBUG", "Exception: " + e.getMessage());
+        }
+    }
+
+
+
+
+    public void loadAvatarImages(ArrayList<String> base64List, View popupView)
+    {
+        ImageView[] Avatars = {
+                popupView.findViewById(R.id.avtar1),
+                popupView.findViewById(R.id.avtar2),
+                popupView.findViewById(R.id.avtar3),
+                popupView.findViewById(R.id.avtar4),
+                popupView.findViewById(R.id.avtar5),
+                popupView.findViewById(R.id.avtar6),
+                popupView.findViewById(R.id.avtar7),
+                popupView.findViewById(R.id.avtar8)
+        };
+
+        for (int i = 0; i < Avatars.length; i++) {
+            if (i < base64List.size()) {
+                decodeAvatar(base64List.get(i), Avatars[i]);
+            }
+            // DO NOT set default here
+        }
+    }
+
 }
