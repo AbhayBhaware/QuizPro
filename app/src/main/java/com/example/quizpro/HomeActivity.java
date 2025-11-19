@@ -2,9 +2,11 @@ package com.example.quizpro;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -46,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
     RelativeLayout overlay;
     ProgressBar imageloading;
     TextView usernameText;
+    CircleImageView profileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,24 @@ public class HomeActivity extends AppCompatActivity {
         menuBTN=findViewById(R.id.menuBTN);
         profileFrame=findViewById(R.id.profileFrame);
         db=FirebaseFirestore.getInstance();
+
+
+        CircleImageView profileImageinHome = findViewById(R.id.profileImageInHome);
+
+        SharedPreferences prefs = getSharedPreferences("UserProfileHome", MODE_PRIVATE);
+        String saved = prefs.getString("savedAvatar", null);
+
+        if (saved != null) {
+            try {
+                if (saved.startsWith("data:image")) {
+                    saved = saved.substring(saved.indexOf(",") + 1);
+                }
+                byte[] bytes = Base64.decode(saved, Base64.DEFAULT);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                profileImageinHome.setImageBitmap(bitmap);
+            } catch (Exception e) { e.printStackTrace(); }
+        }
+
 
         Map<String, ImageView> imageMap = new HashMap<>();
         imageMap.put("GDJ5SzUkshoO1FtYsyJg", findViewById(R.id.rushmodeIMG));
@@ -265,6 +286,7 @@ public class HomeActivity extends AppCompatActivity {
 
             popupWindow.dismiss();
         };
+
     }
 
     public void decodeAvatar(String base64Image, ImageView targetView) {
@@ -312,7 +334,8 @@ public class HomeActivity extends AppCompatActivity {
 
     public void loadAvatarImages(ArrayList<String> base64List, View popupView)
     {
-        ImageView[] Avatars = {
+        profileImage= popupView.findViewById(R.id.profileImage);
+        CircleImageView[] Avatars = {
                 popupView.findViewById(R.id.avtar1),
                 popupView.findViewById(R.id.avtar2),
                 popupView.findViewById(R.id.avtar3),
@@ -328,6 +351,35 @@ public class HomeActivity extends AppCompatActivity {
                 decodeAvatar(base64List.get(i), Avatars[i]);
             }
             // DO NOT set default here
+        }
+
+        for (CircleImageView avatar : Avatars)
+        {
+            avatar.setOnClickListener(v ->{
+                profileImage.setImageDrawable(avatar.getDrawable());
+
+                int index = -1;
+                for (int i = 0; i < base64List.size(); i++) {
+                    if (avatar == Avatars[i]) {
+                        index = i;
+                        break;
+                    }
+                }
+
+                if (index != -1) {
+                    SharedPreferences prefs = getSharedPreferences("UserProfileHome", MODE_PRIVATE);
+                    prefs.edit().putString("savedAvatar", base64List.get(index)).apply();
+                }
+
+
+                for (CircleImageView a: Avatars)
+                {
+                    a.setBorderWidth(0);
+                }
+
+                avatar.setBorderColor(Color.GREEN);
+                avatar.setBorderWidth(6);
+            });
         }
     }
 

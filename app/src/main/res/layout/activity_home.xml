@@ -34,12 +34,13 @@
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileImageInHome"
                     android:layout_width="@dimen/_43sdp"
                     android:layout_height="@dimen/_43sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_2sdp"
                     android:elevation="@dimen/_5sdp"
-                    android:src="@drawable/quizlogo" />
+                     />
             </FrameLayout>
 
 

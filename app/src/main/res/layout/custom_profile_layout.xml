@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="wrap_content"
     android:background="@drawable/menu_bg"
@@ -12,10 +13,11 @@
         android:orientation="vertical"
         android:layout_gravity="center">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
             android:src="@drawable/quizlogo"
+            android:id="@+id/profileImage"
             android:layout_gravity="center"/>
 
         <TextView
@@ -46,25 +48,33 @@
             android:id="@+id/avtar1"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
+            app:civ_border_width="0dp"
+            app:civ_border_color="#FF00FF00"
             />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avtar2"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:layout_marginLeft="@dimen/_10sdp"/>
+            android:layout_marginLeft="@dimen/_10sdp"
+            app:civ_border_width="0dp"
+            app:civ_border_color="#FF00FF00"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avtar3"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:layout_marginLeft="@dimen/_10sdp"/>
+            android:layout_marginLeft="@dimen/_10sdp"
+            app:civ_border_width="0dp"
+            app:civ_border_color="#FF00FF00"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avtar4"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:layout_marginLeft="@dimen/_10sdp"/>
+            android:layout_marginLeft="@dimen/_10sdp"
+            app:civ_border_width="0dp"
+            app:civ_border_color="#FF00FF00"/>
 
     </LinearLayout>
 
@@ -78,25 +88,33 @@
             android:id="@+id/avtar5"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
+            app:civ_border_width="0dp"
+            app:civ_border_color="#FF00FF00"
             />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avtar6"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:layout_marginLeft="@dimen/_10sdp"/>
+            android:layout_marginLeft="@dimen/_10sdp"
+            app:civ_border_width="0dp"
+            app:civ_border_color="#FF00FF00"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avtar7"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:layout_marginLeft="@dimen/_10sdp"/>
+            android:layout_marginLeft="@dimen/_10sdp"
+            app:civ_border_width="0dp"
+            app:civ_border_color="#FF00FF00"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/avtar8"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:layout_marginLeft="@dimen/_10sdp"/>
+            android:layout_marginLeft="@dimen/_10sdp"
+            app:civ_border_width="0dp"
+            app:civ_border_color="#FF00FF00"/>
 
     </LinearLayout>
 
